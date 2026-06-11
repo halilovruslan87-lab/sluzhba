@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Служба бытовых услуг — Южно-Сахалинск</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --gold: #F5A623;
+    --gold-dark: #c97f00;
+    --white: #ffffff;
+    --gray: #f4f4f4;
+    --text: #222222;
+    --muted: #666666;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--white);
+  }
+
+  /* HEADER */
+  header {
+    background: var(--black);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .logo span { color: var(--gold); display: block; font-size: 13px; font-weight: 400; letter-spacing: 2px; }
+
+  .header-call {
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--black);
+    color: var(--white);
+    padding: 60px 24px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 320px; height: 320px;
+    background: var(--gold);
+    opacity: 0.07;
+    border-radius: 50%;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 em {
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #aaa;
+    margin-bottom: 36px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-city {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #888;
+    font-size: 13px;
+    margin-bottom: 36px;
+  }
+
+  .hero-city::before { content: '📍'; }
+
+  .btn-main {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 16px 40px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-main:hover { background: var(--gold-dark); }
+
+  .hero-badges {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .badge-num {
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .badge-label {
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 64px 24px;
+    background: var(--gray);
+  }
+
+  .section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(26px, 5vw, 38px);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .section-line {
+    width: 48px;
+    height: 4px;
+    background: var(--gold);
+    margin: 0 auto 40px;
+    border-radius: 2px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 28px 24px;
+    border-left: 4px solid var(--gold);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+  }
+
+  .service-icon { font-size: 32px; margin-bottom: 14px; }
+
+  .service-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* WHY */
+  .why {
+    padding: 64px 24px;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .why .section-title { color: var(--white); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .why-item {
+    text-align: center;
+    padding: 24px 16px;
+  }
+
+  .why-icon { font-size: 36px; margin-bottom: 14px; }
+
+  .why-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    color: var(--gold);
+  }
+
+  .why-text { font-size: 14px; color: #aaa; line-height: 1.6; }
+
+  /* CTA */
+  .cta {
+    padding: 72px 24px;
+    text-align: center;
+    background: var(--white);
+  }
+
+  .cta h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .cta h2 span { color: var(--gold); }
+
+  .cta p { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+
+  .btn-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Oswald', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 18px 44px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: background 0.2s;
+  }
+
+  .btn-call:hover { background: #333; }
+
+  .cta-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #bbb;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: #666;
+    text-align: center;
+    padding: 24px;
+    font-size: 13px;
+  }
+
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .hero-badges { gap: 16px; }
+    .badge-num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    Служба бытовых услуг
+    <span>Южно-Сахалинск</span>
+  </div>
+  <a href="tel:89146404160" class="header-call">Позвонить</a>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Работаем 24/7</div>
+  <h1>Мастер на дом<br><em>быстро и надёжно</em></h1>
+  <p class="hero-sub">Вскрытие замков, сантехника, бытовые услуги — приедем в течение 30 минут</p>
+  <div class="hero-city">Южно-Сахалинск</div>
+  <br>
+  <a href="tel:89146404160" class="btn-main">📞 Вызвать мастера</a>
+  <div class="hero-badges">
+    <div class="badge"><span class="badge-num">24/7</span><span class="badge-label">Без выходных</span></div>
+    <div class="badge"><span class="badge-num">30 мин</span><span class="badge-label">Выезд</span></div>
+    <div class="badge"><span class="badge-num">0 ₽</span><span class="badge-label">Вызов</span></div>
+  </div>
+</section>
+
+<section class="services">
+  <h2 class="section-title">Наши услуги</h2>
+  <div class="section-line"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔐</div>
+      <div class="service-name">Вскрытие замков</div>
+      <div class="service-desc">Откроем дверь без повреждений. Любые замки — быстро и аккуратно.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔑</div>
+      <div class="service-name">Замена замков</div>
+      <div class="service-desc">Установим новый замок любой сложности. Работаем со всеми марками.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚪</div>
+      <div class="service-name">Замена дверных ручек</div>
+      <div class="service-desc">Замена и установка ручек на входные и межкомнатные двери.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <div class="service-name">Устранение скрипа</div>
+      <div class="service-desc">Уберём скрип и провисание дверей. Регулировка петель и доводчиков.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🚿</div>
+      <div class="service-name">Сантехника</div>
+      <div class="service-desc">Устранение засоров, ремонт и замена труб, кранов, смесителей.</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛠️</div>
+      <div class="service-name">Бытовые услуги</div>
+      <div class="service-desc">Мелкий ремонт, сборка мебели и другие работы по дому.</div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <h2 class="section-title">Почему выбирают нас</h2>
+  <div class="section-line"></div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Быстрый выезд</div>
+      <div class="why-text">Приедем в течение 30 минут после звонка</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🛡️</div>
+      <div class="why-title">Гарантия качества</div>
+      <div class="why-text">Даём гарантию на все виды выполненных работ</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Честные цены</div>
+      <div class="why-text">Называем стоимость до начала работ, без скрытых доплат</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🌙</div>
+      <div class="why-title">Круглосуточно</div>
+      <div class="why-text">Работаем 24 часа в сутки, 7 дней в неделю</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Нужна помощь?<br><span>Звоните сейчас!</span></h2>
+  <p>Бесплатный выезд и консультация по телефону</p>
+  <a href="tel:89146404160" class="btn-call">📞 8 914 640-41-60</a>
+  <p class="cta-note">Южно-Сахалинск • Работаем 24/7 • Выезд бесплатно</p>
+</section>
+
+<footer>
+  © 2026 Служба бытовых услуг, Южно-Сахалинск &nbsp;·&nbsp;
+  <a href="tel:89146404160">8 914 640-41-60</a>
+</footer>
+
+</body>
+</html>
